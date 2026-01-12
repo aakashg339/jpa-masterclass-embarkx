@@ -1,5 +1,9 @@
 package com.example;
 
+import org.hibernate.Session;
+
+import com.example.util.HibernateUtil;
+
 /**
  * Hello world!
  *
@@ -8,6 +12,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Session session = HibernateUtil.getSession();
     }
 }
