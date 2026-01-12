@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import com.example.model.User;
+import com.example.model.UserInfo;
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
@@ -13,7 +13,7 @@ public class HibernateUtil {
         try {
             sessionFactory = new Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(User.class)
+                .addAnnotatedClass(UserInfo.class)
                 .buildSessionFactory();
         } catch(Exception e) {
             e.printStackTrace();

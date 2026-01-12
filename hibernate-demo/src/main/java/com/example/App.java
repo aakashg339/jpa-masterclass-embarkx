@@ -2,7 +2,7 @@ package com.example;
 
 import org.hibernate.Session;
 
-import com.example.model.User;
+import com.example.model.UserInfo;
 import com.example.util.HibernateUtil;
 
 /**
@@ -16,7 +16,7 @@ public class App
         Session session = HibernateUtil.getSession();
 
         try {
-            User user = new User("Alice", "Alice@email.com");
+            UserInfo user = new UserInfo("Alice", "Alice@email.com");
 
             session.beginTransaction();
             session.persist(user);
