@@ -1,9 +1,9 @@
 package com.example;
 
-import org.hibernate.Session;
-
 import com.example.model.UserInfo;
-import com.example.util.HibernateUtil;
+import com.example.util.JPAUtil;
+
+import jakarta.persistence.EntityManager;
 
 /**
  * Hello world!
@@ -13,18 +13,19 @@ public class App
 {
     public static void main( String[] args )
     {
-        Session session = HibernateUtil.getSession();
+        EntityManager entityManager = JPAUtil.getEntityManager();
 
         try {
             UserInfo user = new UserInfo("Alice", "Alice@email.com");
 
-            session.beginTransaction();
-            session.persist(user);
-            session.getTransaction().commit();
+            entityManager.getTransaction().begin();
+            entityManager.persist(user);
+            entityManager.getTransaction().commit();
 
             System.out.println("User saved with ID: " + user.getId());
         } finally {
-            HibernateUtil.close();
+            entityManager.close();
+            JPAUtil.close();
         }
     }
 }
