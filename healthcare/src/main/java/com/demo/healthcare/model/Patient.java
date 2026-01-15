@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Patient {
@@ -15,6 +18,17 @@ public class Patient {
     private String name;
     
     private Integer age;
+
+    @OneToOne
+    @JoinColumn(name = "medical_record_id")
+    private MedicalRecord medicalRecord;
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    private Doctor doctor;
+
+    public Patient() {
+    }
 
     public Patient(String name, Integer age) {
         this.name = name;
@@ -49,6 +63,22 @@ public class Patient {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
+    }
+
+    public void setMedicalRecord(MedicalRecord medicalRecord) {
+        this.medicalRecord = medicalRecord;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
 }

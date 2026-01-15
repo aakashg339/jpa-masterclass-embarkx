@@ -1,4 +1,4 @@
-package com.demo.healthcare;
+package com.demo.healthcare.demo;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
