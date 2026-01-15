@@ -1,5 +1,7 @@
 package com.demo.healthcare.demo;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +12,9 @@ import com.demo.healthcare.repository.DoctorRepository;
 import com.demo.healthcare.repository.MedicalRecordRepository;
 import com.demo.healthcare.repository.PatientRepository;
 
-@Component
+import jakarta.transaction.Transactional;
+
+// @Component
 public class JPARelationshipsDemo implements CommandLineRunner {
 
     private PatientRepository patientRepository;
@@ -24,6 +28,7 @@ public class JPARelationshipsDemo implements CommandLineRunner {
     }
 
     @Override
+    // @Transactional
     public void run(String... args) throws Exception {
         // // ONE TO ONE
         // MedicalRecord medicalRecord = new MedicalRecord("Fever");
@@ -55,6 +60,16 @@ public class JPARelationshipsDemo implements CommandLineRunner {
         Patient patient2 = new Patient("Jane", 33);
         patient2.setDoctor(doctor1);
         patientRepository.save(patient2);
+
+        // doctor1.setPatients(List.of(patient1, patient2));
+        
+        System.out.println("Patient's docter: " + patient1.getDoctor().getName());
+        System.out.println("Docter's patient: " + doctor1.getPatients().get(0).getName());
+
+        // Doctor fetchedDoctor1 = doctorRepository.findById(doctor1.getId())
+        //     .orElseThrow(() -> new RuntimeException("Doctor not present with id: " + doctor1.getId()));
+
+        // System.out.println("Docter's patient: " + fetchedDoctor1.getPatients().get(0).getName());
 
     }
 

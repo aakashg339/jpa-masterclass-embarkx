@@ -1,5 +1,6 @@
 package com.demo.healthcare.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class Patient {
     @JoinColumn(name = "medical_record_id")
     private MedicalRecord medicalRecord;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
