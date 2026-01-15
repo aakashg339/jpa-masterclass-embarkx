@@ -11,7 +11,7 @@ import com.demo.healthcare.model.Patient;
 import com.demo.healthcare.repository.DoctorRepository;
 import com.demo.healthcare.repository.PatientRepository;
 
-@Component
+// @Component
 public class FetchTypeDemo implements CommandLineRunner {
 
     private final DoctorRepository doctorRepository;
@@ -22,7 +22,7 @@ public class FetchTypeDemo implements CommandLineRunner {
         this.patientRepository = patientRepository;
     }
 
-    // @Override
+    @Override
     public void run(String... args) throws Exception {
         System.out.println("=== STEP 1: Insert Sample Data ===");
 
