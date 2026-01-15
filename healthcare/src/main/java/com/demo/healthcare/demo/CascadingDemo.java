@@ -11,7 +11,7 @@ import com.demo.healthcare.repository.DoctorRepository;
 import com.demo.healthcare.repository.MedicalRecordRepository;
 import com.demo.healthcare.repository.PatientRepository;
 
-@Component
+// @Component
 public class CascadingDemo implements CommandLineRunner {
 
     private PatientRepository patientRepository;
@@ -48,8 +48,22 @@ public class CascadingDemo implements CommandLineRunner {
         doctor1.setPatients(List.of(patient1, patient2));
         
         // CascadeType.REMOVE
-        Doctor doctor = doctorRepository.findById(1L).get();
-        doctorRepository.delete(doctor);
+        // Doctor doctor = doctorRepository.findById(1L).get();
+        // doctorRepository.delete(doctor);
+
+        // CacadeType.MERGE
+        System.out.println("===CascadeType.REMOVE===");
+        Doctor managedDoctor = doctorRepository.findById(1L)
+            .orElseThrow();
+        managedDoctor.setName("Dr. Updated");
+        
+        Patient managedPatient = patientRepository.findById(1L)
+            .orElseThrow();
+        managedPatient.setAge(44);
+
+        managedDoctor.setPatients(List.of(managedPatient));
+
+        doctorRepository.save(managedDoctor);
     }
 
 }

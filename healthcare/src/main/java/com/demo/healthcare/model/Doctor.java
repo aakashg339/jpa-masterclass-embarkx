@@ -19,7 +19,7 @@ public class Doctor {
 
     private String name;
 
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "doctor", cascade = {CascadeType.REMOVE, CascadeType.MERGE})
     private List<Patient> patients = new ArrayList<>();
 
     public Doctor() {
