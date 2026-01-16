@@ -23,6 +23,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "patients")
@@ -51,6 +52,9 @@ public class Patient {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @Version
+    private int version;
 
     // @Lob
     // private byte[] profilePicture;

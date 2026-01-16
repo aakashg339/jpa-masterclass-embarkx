@@ -20,7 +20,7 @@ import com.demo.healthcare.repository.MedicineRepository;
 import com.demo.healthcare.repository.PatientRepository;
 import com.demo.healthcare.repository.PrescriptionRepository;
 
-@Component
+// @Component
 public class CompositeKeyDemo implements CommandLineRunner {
 
     private final DoctorRepository doctorRepository;
