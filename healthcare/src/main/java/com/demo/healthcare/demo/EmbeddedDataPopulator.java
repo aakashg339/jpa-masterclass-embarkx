@@ -8,7 +8,7 @@ import com.demo.healthcare.model.Patient;
 import com.demo.healthcare.repository.DoctorRepository;
 import com.demo.healthcare.repository.PatientRepository;
 
-@Component
+// @Component
 public class EmbeddedDataPopulator implements CommandLineRunner {
 
     private final DoctorRepository doctorRepository;
