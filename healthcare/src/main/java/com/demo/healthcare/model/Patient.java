@@ -1,6 +1,10 @@
 package com.demo.healthcare.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -41,6 +45,12 @@ public class Patient {
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     // @Lob
     // private byte[] profilePicture;
