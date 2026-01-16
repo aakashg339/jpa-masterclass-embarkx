@@ -9,6 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import com.demo.healthcare.model.Doctor;
+import com.demo.healthcare.model.Gender;
 import com.demo.healthcare.model.MedicalRecord;
 import com.demo.healthcare.model.Medicine;
 import com.demo.healthcare.model.Patient;
@@ -44,6 +45,7 @@ public class CompositeKeyDemo implements CommandLineRunner {
 
         Patient alice = new Patient("Alice Johnson", 30);
         alice.setDoctor(drSmith);
+        alice.setGender(Gender.FEMALE);
         // byte[] imageData = Files.readAllBytes(new ClassPathResource("/images/person-icon-white-icon.png").getFile().toPath());
         // alice.setProfilePicture(imageData);
         patientRepository.save(alice);
