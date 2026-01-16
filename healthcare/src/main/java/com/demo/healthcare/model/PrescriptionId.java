@@ -3,6 +3,9 @@ package com.demo.healthcare.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class PrescriptionId implements Serializable {
     
     private Long doctorId;
