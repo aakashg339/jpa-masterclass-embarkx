@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -31,6 +32,9 @@ public class Patient {
 
     @Embedded
     private Address address;
+
+    // @Lob
+    // private byte[] profilePicture;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "medical_record_id")
@@ -104,5 +108,13 @@ public class Patient {
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    // public byte[] getProfilePicture() {
+    //     return profilePicture;
+    // }
+
+    // public void setProfilePicture(byte[] profilePicture) {
+    //     this.profilePicture = profilePicture;
+    // }
 
 }
