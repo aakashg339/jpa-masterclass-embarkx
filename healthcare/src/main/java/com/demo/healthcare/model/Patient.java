@@ -16,6 +16,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "patients")
@@ -32,6 +33,9 @@ public class Patient {
 
     @Embedded
     private Address address;
+
+    @Transient
+    private String ageGroup;
 
     // @Lob
     // private byte[] profilePicture;
@@ -53,12 +57,14 @@ public class Patient {
     public Patient(String name, Integer age) {
         this.name = name;
         this.age = age;
+        this.ageGroup = calculateAgeGroup();
     }
 
     public Patient(Long id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.ageGroup = calculateAgeGroup();
     }
 
     public Long getId() {
@@ -83,6 +89,7 @@ public class Patient {
 
     public void setAge(Integer age) {
         this.age = age;
+        this.ageGroup = calculateAgeGroup();
     }
 
     public MedicalRecord getMedicalRecord() {
@@ -107,6 +114,17 @@ public class Patient {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    private String calculateAgeGroup() {
+        if(this.age <= 12)
+            return "child";
+        else if(this.age < 19)
+            return "teen";
+        else if(this.age < 60)
+            return "adult";
+        else
+            return "old";
     }
 
     // public byte[] getProfilePicture() {
