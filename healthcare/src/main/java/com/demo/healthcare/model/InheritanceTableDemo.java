@@ -12,13 +12,13 @@ import com.demo.healthcare.repository.PatientRepository;
 import com.demo.healthcare.repository.PersonRepository;
 
 @Component
-public class InheritanceJoinedTableDemo implements CommandLineRunner {
+public class InheritanceTableDemo implements CommandLineRunner {
 
     private DoctorRepository doctorRepository;
     private PatientRepository patientRepository;
     private PersonRepository personRepository;
     
-    public InheritanceJoinedTableDemo(DoctorRepository doctorRepository, PatientRepository patientRepository,
+    public InheritanceTableDemo(DoctorRepository doctorRepository, PatientRepository patientRepository,
             PersonRepository personRepository) {
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
