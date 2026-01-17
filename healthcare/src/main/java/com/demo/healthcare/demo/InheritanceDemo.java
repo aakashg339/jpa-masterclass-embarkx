@@ -1,4 +1,4 @@
-package com.demo.healthcare.model;
+package com.demo.healthcare.demo;
 
 import java.util.List;
 
@@ -7,18 +7,22 @@ import javax.print.Doc;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.demo.healthcare.model.Doctor;
+import com.demo.healthcare.model.Gender;
+import com.demo.healthcare.model.Patient;
+import com.demo.healthcare.model.Person;
 import com.demo.healthcare.repository.DoctorRepository;
 import com.demo.healthcare.repository.PatientRepository;
 import com.demo.healthcare.repository.PersonRepository;
 
-@Component
-public class InheritanceTableDemo implements CommandLineRunner {
+// @Component
+public class InheritanceDemo implements CommandLineRunner {
 
     private DoctorRepository doctorRepository;
     private PatientRepository patientRepository;
     private PersonRepository personRepository;
     
-    public InheritanceTableDemo(DoctorRepository doctorRepository, PatientRepository patientRepository,
+    public InheritanceDemo(DoctorRepository doctorRepository, PatientRepository patientRepository,
             PersonRepository personRepository) {
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
