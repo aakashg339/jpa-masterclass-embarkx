@@ -19,7 +19,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-@Component
+// @Component
 public class TypedUntyped implements CommandLineRunner {
 
     private DoctorRepository doctorRepository;
