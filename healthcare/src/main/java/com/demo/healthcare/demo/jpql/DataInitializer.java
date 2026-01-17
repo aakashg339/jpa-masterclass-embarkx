@@ -25,18 +25,20 @@ public class DataInitializer implements CommandLineRunner {
     private PersonRepository personRepository;
     private MedicalRecordRepository medicalRecordRepository;
     private QueryParameters queryParameters;
+    private LearnQueries learnQueries;
 
     @PersistenceContext
     private EntityManager entityManager;
     
     public DataInitializer(DoctorRepository doctorRepository, PatientRepository patientRepository,
             PersonRepository personRepository, MedicalRecordRepository medicalRecordRepository,
-            QueryParameters queryParameters) {
+            QueryParameters queryParameters, LearnQueries learnQueries) {
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
         this.personRepository = personRepository;
         this.medicalRecordRepository = medicalRecordRepository;
         this.queryParameters = queryParameters;
+        this.learnQueries = learnQueries;
     }
 
     @Override
@@ -76,7 +78,8 @@ public class DataInitializer implements CommandLineRunner {
         );
         patientRepository.save(alice);
         
-        queryParameters.execute(entityManager);
+        // queryParameters.execute(entityManager);
+        learnQueries.execute(entityManager);
     }
 
 }

@@ -23,4 +23,22 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     int countByAge(int age);
 
+    @Query("SELECT p FROM Patient p WHERE p.age > :minAge")
+    List<Patient> findOlderThan(@Param("minAge") int minAge);
+
+    @Query("SELECT p FROM Patient p WHERE p.name LIKE :prefix")
+    List<Patient> findByNameStartingWith(@Param("prefix") String prefix);
+
+    @Query("SELECT p FROM Patient p WHERE p.gender IN :genders")
+    List<Patient> findByGenders(@Param("genders") List<Gender> genders);
+
+    @Query("SELECT p FROM Patient p WHERE p.age BETWEEN :start AND :end")
+    List<Patient> findByAgeRange(@Param("start") int start, @Param("end") int end);
+
+    @Query("SELECT p FROM Patient p WHERE p.doctor IS NULL")
+    List<Patient> findUnassignedPatients();
+
+    // SORTING RESULTS
+    
+
 }
