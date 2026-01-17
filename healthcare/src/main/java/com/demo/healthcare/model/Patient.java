@@ -26,17 +26,8 @@ import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
 
 @Entity
-@Table(name = "patients")
-public class Patient {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    @Column(name = "patient_name")
-    private String name;
-    
-    private Integer age;
+// @Table(name = "patients")
+public class Patient extends Person {
 
     @Embedded
     private Address address;
@@ -53,8 +44,8 @@ public class Patient {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @Version
-    private int version;
+    // @Version
+    // private int version;
 
     // @Lob
     // private byte[] profilePicture;
@@ -73,42 +64,47 @@ public class Patient {
     public Patient() {
     }
 
+    public Patient(String name, int age, String email, Gender gender) {
+        super(name, age, email);
+        this.gender = gender;
+    }
+
     public Patient(String name, Integer age) {
-        this.name = name;
-        this.age = age;
-        this.ageGroup = calculateAgeGroup();
+        // this.name = name;
+        // this.age = age;
+        this.ageGroup = calculateAgeGroup(age);
     }
 
     public Patient(Long id, String name, Integer age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.ageGroup = calculateAgeGroup();
+        // this.id = id;
+        // this.name = name;
+        // this.age = age;
+        this.ageGroup = calculateAgeGroup(age);
     }
 
-    public Long getId() {
-        return id;
-    }
+    // public Long getId() {
+    //     return id;
+    // }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    // public void setId(Long id) {
+    //     this.id = id;
+    // }
 
-    public String getName() {
-        return name;
-    }
+    // public String getName() {
+    //     return name;
+    // }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    // public void setName(String name) {
+    //     this.name = name;
+    // }
 
-    public Integer getAge() {
-        return age;
-    }
+    // public Integer getAge() {
+    //     return age;
+    // }
 
     public void setAge(Integer age) {
-        this.age = age;
-        this.ageGroup = calculateAgeGroup();
+        // this.age = age;
+        this.ageGroup = calculateAgeGroup(age);
     }
 
     public MedicalRecord getMedicalRecord() {
@@ -135,12 +131,12 @@ public class Patient {
         this.address = address;
     }
 
-    private String calculateAgeGroup() {
-        if(this.age <= 12)
+    private String calculateAgeGroup(int age) {
+        if(age <= 12)
             return "child";
-        else if(this.age < 19)
+        else if(age < 19)
             return "teen";
-        else if(this.age < 60)
+        else if(age < 60)
             return "adult";
         else
             return "old";
