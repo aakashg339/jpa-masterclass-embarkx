@@ -39,6 +39,10 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     List<Patient> findUnassignedPatients();
 
     // SORTING RESULTS
-    
+    @Query("SELECT p FROM Patient p ORDER BY p.age DESC, p.name ASC")
+    List<Patient> sortByAge();
+
+    @Query("SELECT p FROM Patient p WHERE p.gender = ?1 ORDER BY p.age DESC")
+    List<Patient> findByGenderSortByAge(Gender gender);
 
 }

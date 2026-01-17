@@ -42,6 +42,15 @@ public class LearnQueries {
         );
 
         // SORTING RESULTS
+        List<Patient> sortBy = patientRepository.sortByAge();
+        sortBy.forEach(
+            p -> System.out.println("Sorted Data: " + p.getName())
+        );
+
+        List<Patient> sortAndFilter = patientRepository.findByGenderSortByAge(Gender.MALE);
+        sortAndFilter.forEach(
+            p -> System.out.println("Sorted and Filtered Data: " + p.getName())
+        );
     }
 
 }
