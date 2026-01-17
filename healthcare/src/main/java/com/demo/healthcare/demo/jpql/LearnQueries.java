@@ -51,6 +51,33 @@ public class LearnQueries {
         sortAndFilter.forEach(
             p -> System.out.println("Sorted and Filtered Data: " + p.getName())
         );
+
+        // JOINS
+        List<Patient> innerJoin = patientRepository.findPatientsWithDoctor("Cardiology");
+        innerJoin.forEach(
+            p -> System.out.println("Innner Join Data: " + p.getName())
+        );
+
+        List<Patient> leftJoin = patientRepository.findPatientsWithDoctorLeft();
+        leftJoin.forEach(
+            p -> System.out.println("Left Join Data: " + p.getName())
+        );
+
+        // As left join so below will not work and we will not have doctor data
+        // leftJoin.forEach(
+        //     p -> {
+        //         System.out.println("Left Join Data: " + p.getName());
+        //         System.out.println("DOCTOR NAME: " + p.getDoctor().getName());
+        //     }
+        // );
+
+        List<Patient> joinFetch = patientRepository.findPatientsWithDoctorJoinFetch();
+        joinFetch.forEach(
+            p -> {
+                System.out.println("joinFetch Data: " + p.getName());
+                System.out.println("DOCTOR NAME: " + p.getDoctor().getName());
+            }
+        );
     }
 
 }
