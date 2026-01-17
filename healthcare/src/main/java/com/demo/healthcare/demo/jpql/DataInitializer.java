@@ -17,8 +17,8 @@ import com.demo.healthcare.repository.PersonRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-// @Component
-public class BasicJPQLQueries implements CommandLineRunner {
+@Component
+public class DataInitializer implements CommandLineRunner {
 
     private DoctorRepository doctorRepository;
     private PatientRepository patientRepository;
@@ -28,7 +28,7 @@ public class BasicJPQLQueries implements CommandLineRunner {
     @PersistenceContext
     private EntityManager entityManager;
     
-    public BasicJPQLQueries(DoctorRepository doctorRepository, PatientRepository patientRepository,
+    public DataInitializer(DoctorRepository doctorRepository, PatientRepository patientRepository,
             PersonRepository personRepository, MedicalRecordRepository medicalRecordRepository) {
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
@@ -73,43 +73,6 @@ public class BasicJPQLQueries implements CommandLineRunner {
         );
         patientRepository.save(alice);
 
-        // JPQL Queries
-        List<Patient> patients = entityManager.createQuery(
-            "SELECT p FROM Patient p", Patient.class
-        ).getResultList();
-
-        System.out.println("Patients: " + patients.size());
-
-        System.out.println("Patients: ");
-        for(Patient p : patients) {
-            System.out.println("Patient Name: " + p.getName());
-        }
-
-        // FILTERING
-        List<Patient> malePatients = entityManager.createQuery(
-            "SELECT p FROM Patient p WHERE p.gender= :gender", Patient.class
-        )
-        .setParameter("gender", Gender.MALE)
-        .getResultList();
-
-        System.out.println("Patients: " + malePatients.size());
-
-        System.out.println("MALE Patients: ");
-        for(Patient p : malePatients) {
-            System.out.println("MALE Patient Name: " + p.getName());
-        }
-
-        List<Patient> malePatients2 = entityManager.createQuery(
-            "SELECT p FROM Patient p WHERE p.gender = " + Gender.MALE, Patient.class
-        )
-        .getResultList();
-
-        System.out.println("Patients: " + malePatients2.size());
-
-        System.out.println("MALE Patients: ");
-        for(Patient p : malePatients2) {
-            System.out.println("MALE Patient Name: " + p.getName());
-        }
     }
 
 }
