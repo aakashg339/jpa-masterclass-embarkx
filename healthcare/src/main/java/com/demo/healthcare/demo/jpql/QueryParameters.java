@@ -40,6 +40,10 @@ public class QueryParameters {
 
         List<Patient> patients2 = patientRepository.findByNameAndGender("John Doe", Gender.MALE);
         System.out.println("SIZE: " + patients2.size());
+
+        System.out.println("Exists by email: " + patientRepository.existsByEmail("alice@gmail.com"));
+
+        System.out.println("Count by age: " + patientRepository.countByAge(33));
     }
 
 }
