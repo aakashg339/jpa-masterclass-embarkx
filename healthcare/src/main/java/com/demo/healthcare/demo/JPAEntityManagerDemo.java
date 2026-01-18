@@ -75,7 +75,7 @@ public class JPAEntityManagerDemo implements CommandLineRunner {
         // refresh()
         Patient patient = new Patient("John Doe", 30);
         entityManager.persist(patient);
-        patient.setName("Update 1");
+        // patient.setName("Update 1");
         entityManager.refresh(patient);
         patient.setAge(155);
     }

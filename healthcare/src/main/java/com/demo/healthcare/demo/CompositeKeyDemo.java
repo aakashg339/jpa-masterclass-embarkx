@@ -79,8 +79,8 @@ public class CompositeKeyDemo implements CommandLineRunner {
         Optional<Prescription> fetchedPrescription = prescriptionRepository.findById(key);
         if(fetchedPrescription.isPresent()) {
             Prescription p = fetchedPrescription.get();
-            System.out.println("Found prescription for Dr. " + p.getDoctorId().getName()
-                + " -> Patient: " + p.getPatientId().getName());
+            // System.out.println("Found prescription for Dr. " + p.getDoctorId().getName()
+                // + " -> Patient: " + p.getPatientId().getName());
             System.out.println("Medicine Prescribed");
             p.getMedicines().forEach((medicine) -> System.out.println(" . " + medicine.getName()));
         }

@@ -64,7 +64,7 @@ public class JPARelationshipsDemo implements CommandLineRunner {
         // doctor1.setPatients(List.of(patient1, patient2));
         
         System.out.println("Patient's docter: " + patient1.getDoctor().getName());
-        System.out.println("Docter's patient: " + doctor1.getPatients().get(0).getName());
+        // System.out.println("Docter's patient: " + doctor1.getPatients().get(0).getName());
 
         // Doctor fetchedDoctor1 = doctorRepository.findById(doctor1.getId())
         //     .orElseThrow(() -> new RuntimeException("Doctor not present with id: " + doctor1.getId()));

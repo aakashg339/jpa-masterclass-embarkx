@@ -8,7 +8,7 @@ import com.demo.healthcare.model.Gender;
 import com.demo.healthcare.model.Patient;
 import com.demo.healthcare.repository.PatientRepository;
 
-@Component
+// @Component
 public class OptimisticLockingDemo implements CommandLineRunner {
 
     private final PatientRepository patientRepository;
@@ -29,11 +29,11 @@ public class OptimisticLockingDemo implements CommandLineRunner {
 
         Patient p1 = patientRepository.findById(1L).get();
         Patient p2 = patientRepository.findById(1L).get();
-        p1.setName("New Alice 1");
+        // p1.setName("New Alice 1");
         patientRepository.save(p1);
 
         // Error due to optimistic locking
-        p2.setName("New Alice 2");
+        // p2.setName("New Alice 2");
         patientRepository.save(p2);
     }
 
