@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.demo.healthcare.model.Gender;
 import com.demo.healthcare.model.Patient;
+import com.demo.healthcare.repository.DoctorRepository;
 import com.demo.healthcare.repository.PatientRepository;
 
 import jakarta.persistence.EntityManager;
@@ -16,6 +17,9 @@ public class LearnQueries {
 
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private DoctorRepository doctorRepository;
 
     public void execute(EntityManager entityManager) {
         List<Patient> older = patientRepository.findOlderThan(32);
@@ -76,6 +80,25 @@ public class LearnQueries {
             p -> {
                 System.out.println("joinFetch Data: " + p.getName());
                 System.out.println("DOCTOR NAME: " + p.getDoctor().getName());
+            }
+        );
+
+        // AGGREGATION
+        System.out.println("AGGREGATED DATA - COUNT");
+        List<Object[]> countQuery = doctorRepository.countOfPatientsBySpecialization("Cardiology");
+        countQuery.forEach(
+            row -> {
+                System.out.println("SPEC: " + row[0] + " | Patient: " + row[1]);
+            }
+        );
+
+        System.out.println("AGGREGATED DATA - AVG");
+        List<Object[]> avgQuery = patientRepository.averageAgeByGender();
+        avgQuery.forEach(
+            row -> {
+                Gender gender = (Gender) row[0];
+                Double avgAge = (Double) row[1];
+                System.out.println("Gender: " + gender + " | Age: " + avgAge);
             }
         );
     }
