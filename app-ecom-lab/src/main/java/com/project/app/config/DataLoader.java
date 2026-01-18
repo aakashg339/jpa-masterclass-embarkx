@@ -40,41 +40,41 @@ public class DataLoader {
             // ---------------- JPQL TASK VALIDATION (uncomment one task at a time) ----------------
 
             // Task — High-Value Orders
-//            System.out.println("\n--- Task : High-Value Orders (total > 1000) ---");
-//            List<Object[]> high = orderRepo.findHighValueOrders(1000.0);
-//            high.forEach(r -> {
-//                Number id = (Number) r[0];
-//                Number total = (Number) r[1];
-//                System.out.println("Order ID: " + id.longValue() + ", Total: " + total.doubleValue());
-//            });
+           System.out.println("\n--- Task : High-Value Orders (total > 1000) ---");
+           List<Object[]> high = orderRepo.findHighValueOrders(1000.0);
+           high.forEach(r -> {
+               Number id = (Number) r[0];
+               Number total = (Number) r[1];
+               System.out.println("Order ID: " + id.longValue() + ", Total: " + total.doubleValue());
+           });
 
             // Task — Customer Purchase History
-//            System.out.println("\n--- Task : Orders for Customer (most recent first) ---");
-//            List<Order> customerOrders = orderRepo.findOrdersByCustomerIdSorted(c1.getId());
-//            customerOrders.forEach(o -> System.out.println("Order ID: " + o.getId() + ", Date: " + o.getOrderDate() + ", Status: " + o.getStatus()));
+           System.out.println("\n--- Task : Orders for Customer (most recent first) ---");
+           List<Order> customerOrders = orderRepo.findOrdersByCustomerIdSorted(c1.getId());
+           customerOrders.forEach(o -> System.out.println("Order ID: " + o.getId() + ", Date: " + o.getOrderDate() + ", Status: " + o.getStatus()));
 
             // Task — Top-Selling Products (top 3)
-//            System.out.println("\n--- Task : Top-Selling Products (top 3) ---");
-//            List<Object[]> top = productRepo.findTopSellingProducts(PageRequest.of(0, 3));
-//            top.forEach(r -> {
-//                String productName = (String) r[0];
-//                Number units = (Number) r[1]; // number of orders containing the product
-//                System.out.println("Product: " + productName + ", Units Sold (orders): " + units.longValue());
-//            });
+           System.out.println("\n--- Task : Top-Selling Products (top 3) ---");
+           List<Object[]> top = productRepo.findTopSellingProducts(PageRequest.of(0, 3));
+           top.forEach(r -> {
+               String productName = (String) r[0];
+               Number units = (Number) r[1]; // number of orders containing the product
+               System.out.println("Product: " + productName + ", Units Sold (orders): " + units.longValue());
+           });
 
             // Task — Revenue by Customer
-//            System.out.println("\n--- Task : Revenue by Customer ---");
-//            List<Object[]> revenue = orderRepo.calculateRevenueByCustomer();
-//            revenue.forEach(r -> {
-//                String customerName = (String) r[0];
-//                Number total = (Number) r[1];
-//                System.out.println("Customer: " + customerName + ", Total Revenue: " + total.doubleValue());
-//            });
+           System.out.println("\n--- Task : Revenue by Customer ---");
+           List<Object[]> revenue = orderRepo.calculateRevenueByCustomer();
+           revenue.forEach(r -> {
+               String customerName = (String) r[0];
+               Number total = (Number) r[1];
+               System.out.println("Customer: " + customerName + ", Total Revenue: " + total.doubleValue());
+           });
 
             // Task — Cancel Stale Pending Orders
-//            System.out.println("\n--- Task : Cancel Stale Pending Orders ---");
-//            int updated = orderRepo.cancelStalePendingOrders(LocalDate.now().minusDays(30));
-//            System.out.println("Orders updated (set to CANCELLED): " + updated);
+           System.out.println("\n--- Task : Cancel Stale Pending Orders ---");
+           int updated = orderRepo.cancelStalePendingOrders(LocalDate.now().minusDays(30));
+           System.out.println("Orders updated (set to CANCELLED): " + updated);
         };
     }
 }
