@@ -19,6 +19,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -27,6 +28,10 @@ import jakarta.persistence.Version;
 
 @Entity
 // @Table(name = "patients")
+@NamedQuery(
+    name = "Patient.findByNameStartingWith",
+    query = "SELECT p FROM Patient p WHERE p.name LIKE :prefix"
+)
 public class Patient extends Person {
 
     @Embedded
@@ -148,6 +153,12 @@ public class Patient extends Person {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient [ageGroup=" + ageGroup + ", gender=" + gender + ", createdAt=" + createdAt + ", updatedAt="
+                + updatedAt + ", getName()=" + getName() + ", getAge()=" + getAge() + "]";
     }
 
     // public byte[] getProfilePicture() {

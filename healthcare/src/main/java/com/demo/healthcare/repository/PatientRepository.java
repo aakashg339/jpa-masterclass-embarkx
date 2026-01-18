@@ -30,8 +30,8 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     @Query("SELECT p FROM Patient p WHERE p.age > :minAge")
     List<Patient> findOlderThan(@Param("minAge") int minAge);
 
-    @Query("SELECT p FROM Patient p WHERE p.name LIKE :prefix")
-    List<Patient> findByNameStartingWith(@Param("prefix") String prefix);
+    // @Query("SELECT p FROM Patient p WHERE p.name LIKE :prefix")
+    // List<Patient> findByNameStartingWith(@Param("prefix") String prefix);
 
     @Query("SELECT p FROM Patient p WHERE p.gender IN :genders")
     List<Patient> findByGenders(@Param("genders") List<Gender> genders);
@@ -76,5 +76,8 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     @Query("SELECT NEW com.demo.healthcare.demo.jpql.PatientSummary(p.name, p.age) FROM Patient p")
     List<PatientSummary> getPatientSummary();
+
+    // NAMED QUERY
+    List<Patient> findByNameStartingWith(@Param("prefix") String prefix);
 
 }

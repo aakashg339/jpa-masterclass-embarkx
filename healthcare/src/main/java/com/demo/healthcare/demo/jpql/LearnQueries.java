@@ -115,6 +115,17 @@ public class LearnQueries {
         List<PatientSummary> summaries = patientRepository.getPatientSummary();
         summaries.forEach(System.out::println);
 
+
+        // NAMED QUERIES
+        System.out.println("NAMED QUERIES");
+        
+        // List<Patient> patientList = entityManager.createNamedQuery("Patient.findByNameStartingWith")
+        //     .setParameter("prefix", "J%")
+        //     .getResultList();
+
+        // Same as above but using method with repository instead on defined at the top of entity
+        List<Patient> patientList = patientRepository.findByNameStartingWith("J%");
+        patientList.forEach(p -> System.out.println("Named query Data: " + p));
     }
 
 }
