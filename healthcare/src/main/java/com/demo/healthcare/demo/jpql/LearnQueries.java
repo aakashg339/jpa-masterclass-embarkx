@@ -104,11 +104,16 @@ public class LearnQueries {
 
 
         // BULK UPDATE / DELETE
-        int bulkUpdateCount = patientRepository.bulkIncreaseAge();
-        System.out.println("BULK UPDATED DONE FOR: " + bulkUpdateCount);
+        // int bulkUpdateCount = patientRepository.bulkIncreaseAge();
+        // System.out.println("BULK UPDATED DONE FOR: " + bulkUpdateCount);
 
-        int bulkDeleteByAgeLessThanCount = patientRepository.bulkDeleteByAgeLessThan(35);
-        System.out.println("BULK DELETE DONE FOR: " + bulkDeleteByAgeLessThanCount);
+        // int bulkDeleteByAgeLessThanCount = patientRepository.bulkDeleteByAgeLessThan(35);
+        // System.out.println("BULK DELETE DONE FOR: " + bulkDeleteByAgeLessThanCount);
+
+        // SUMMARIES
+        System.out.println("SUMMARIES");
+        List<PatientSummary> summaries = patientRepository.getPatientSummary();
+        summaries.forEach(System.out::println);
 
     }
 

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.demo.healthcare.demo.jpql.PatientSummary;
 import com.demo.healthcare.model.Gender;
 import com.demo.healthcare.model.Patient;
 
@@ -72,5 +73,8 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     @Transactional
     @Query("DELETE FROM Patient p WHERE p.age < ?1")
     int bulkDeleteByAgeLessThan(int age);
+
+    @Query("SELECT NEW com.demo.healthcare.demo.jpql.PatientSummary(p.name, p.age) FROM Patient p")
+    List<PatientSummary> getPatientSummary();
 
 }
