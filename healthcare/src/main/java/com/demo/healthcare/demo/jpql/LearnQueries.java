@@ -101,6 +101,15 @@ public class LearnQueries {
                 System.out.println("Gender: " + gender + " | Age: " + avgAge);
             }
         );
+
+
+        // BULK UPDATE / DELETE
+        int bulkUpdateCount = patientRepository.bulkIncreaseAge();
+        System.out.println("BULK UPDATED DONE FOR: " + bulkUpdateCount);
+
+        int bulkDeleteByAgeLessThanCount = patientRepository.bulkDeleteByAgeLessThan(35);
+        System.out.println("BULK DELETE DONE FOR: " + bulkDeleteByAgeLessThanCount);
+
     }
 
 }

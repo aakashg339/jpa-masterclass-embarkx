@@ -3,12 +3,15 @@ package com.demo.healthcare.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.demo.healthcare.model.Gender;
 import com.demo.healthcare.model.Patient;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
@@ -58,5 +61,16 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     // AVG
     @Query("SELECT p.gender, AVG(p.age) FROM Patient p GROUP BY p.gender")
     List<Object[]> averageAgeByGender();
+
+    // BULK UPDATE / DELETE
+    @Modifying
+    @Transactional
+    @Query("UPDATE Patient p SET p.age = p.age + 1")
+    int bulkIncreaseAge();
+
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Patient p WHERE p.age < ?1")
+    int bulkDeleteByAgeLessThan(int age);
 
 }
