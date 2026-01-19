@@ -12,7 +12,7 @@ import com.demo.healthcare.repository.PatientRepository;
 
 import jakarta.persistence.EntityManager;
 
-@Component
+// @Component
 public class LearnQueries {
 
     @Autowired
