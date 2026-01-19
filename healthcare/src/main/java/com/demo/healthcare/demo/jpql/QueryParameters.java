@@ -12,7 +12,7 @@ import com.demo.healthcare.repository.PatientRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
-@Component
+// @Component
 public class QueryParameters {
 
     @Autowired

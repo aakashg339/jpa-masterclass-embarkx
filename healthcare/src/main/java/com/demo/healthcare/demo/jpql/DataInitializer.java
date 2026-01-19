@@ -17,7 +17,7 @@ import com.demo.healthcare.repository.PersonRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-@Component
+// @Component
 public class DataInitializer implements CommandLineRunner {
 
     private DoctorRepository doctorRepository;
